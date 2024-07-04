@@ -26,32 +26,54 @@ function render(variables = {}) {
   console.log("These are the current variables: ", variables); // print on the console
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
-  let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
+  let cover = `<div class="cover"><img src="${
+    variables.background === null ? false : variables.background
+  }" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
-            ${cover}
-          <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name === null ? "insert name" : variables.name}</h1>
-          <h2>${variables.role === null ? "insert name" : variables.name}</h2>
-          <h3>${variables.city === null ? "insert name" : variables.name}</h3>
-          <ul class="position-right">
-            <li><a href="${
-              variables.twitter
-            }"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="${
-              variables.github
-            }"><i class="fab fa-github"></i></a></li>
-            <li><a href="${
-              variables.linkedin
-            }"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="${
-              variables.instagram
-            }><i class="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
-    `;
+                ${cover}
+              <img src="${variables.avatarURL}" class="photo" />
+    
+            <h1>${variables.name !== null ? variables.name : "Name"}</h1>
+            <h2>${
+              variables.lastName !== null ? variables.lastName : "Last Name"
+            }</h2>
+            <h2>${variables.role !== null ? variables.role : "Role"}</h2>
+            <h3>${variables.city !== null ? variables.city : "City"}</h3>
+            <h3>${
+              variables.country !== null ? variables.country : "Country"
+            }</h3>
+            <h3>${variables.twitter !== null ? variables.twitter : ""}</h3>
+            <h3>${variables.github !== null ? variables.github : ""}</h3>
+            <h3>${variables.linkedin !== null ? variables.linkedin : ""}</h3>
+            <h3>${variables.instagram !== null ? variables.instagram : ""}</h3>
+    
+              <ul class="position-right">
+                <li><a href="${
+                  variables.twitter !== null
+                    ? variables.twitter
+                    : "https://twitter.com/4geeksacademy"
+                }"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="${
+                  variables.github !== null
+                    ? variables.github
+                    : "https://github.com/4geeksacademy"
+                }"><i class="fab fa-github"></i></a></li>
+                <li><a href="${
+                  variables.linkedin !== null
+                    ? variables.linkedin
+                    : "https://linkedin.com/4geeksacademy"
+                }"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="${
+                  variables.instagram !== null
+                    ? variables.instagram
+                    : "https://instagram.com/4geeksacademy"
+                }"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            </div>
+        `;
 }
 
 /**
@@ -69,7 +91,7 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: null,
+    github: "github",
     linkedin: null,
     instagram: null,
     name: null,
