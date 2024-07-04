@@ -36,15 +36,13 @@ function render(variables = {}) {
                 ${cover}
               <img src="${variables.avatarURL}" class="photo" />
     
-            <h1>${variables.name !== null ? variables.name : "Name"}</h1>
-            <h2>${
-              variables.lastName !== null ? variables.lastName : "Last Name"
-            }</h2>
+            <h1>${variables.name !== null ? variables.name : "Name"} ${
+    variables.lastName !== null ? variables.lastName : "Last Name"
+  }</h1>
             <h2>${variables.role !== null ? variables.role : "Role"}</h2>
-            <h3>${variables.city !== null ? variables.city : "City"}</h3>
-            <h3>${
-              variables.country !== null ? variables.country : "Country"
-            }</h3>
+            <h3>${variables.city !== null ? variables.city : "City"}${
+    variables.country !== null ? variables.country : "Country"
+  }</h3>
             <h3>${variables.twitter !== null ? variables.twitter : ""}</h3>
             <h3>${variables.github !== null ? variables.github : ""}</h3>
             <h3>${variables.linkedin !== null ? variables.linkedin : ""}</h3>
