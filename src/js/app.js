@@ -31,47 +31,31 @@ function render(variables = {}) {
   }" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
-  // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
-                ${cover}
-              <img src="${variables.avatarURL}" class="photo" />
-    
-            <h1>${variables.name !== null ? variables.name : "Name"} ${
-    variables.lastName !== null ? variables.lastName : "Last Name"
-  }</h1>
-            <h2>${variables.role !== null ? variables.role : "Role"}</h2>
-            <h3>${variables.city !== null ? variables.city : "City"}${
-    variables.country !== null ? variables.country : "Country"
-  }</h3>
-            <h3>${variables.twitter !== null ? variables.twitter : ""}</h3>
-            <h3>${variables.github !== null ? variables.github : ""}</h3>
-            <h3>${variables.linkedin !== null ? variables.linkedin : ""}</h3>
-            <h3>${variables.instagram !== null ? variables.instagram : ""}</h3>
-    
-              <ul class="position-right">
-                <li><a href="${
-                  variables.twitter !== null
-                    ? variables.twitter
-                    : "https://twitter.com/4geeksacademy"
-                }"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="${
-                  variables.github !== null
-                    ? variables.github
-                    : "https://github.com/4geeksacademy"
-                }"><i class="fab fa-github"></i></a></li>
-                <li><a href="${
-                  variables.linkedin !== null
-                    ? variables.linkedin
-                    : "https://linkedin.com/4geeksacademy"
-                }"><i class="fab fa-linkedin"></i></a></li>
-                <li><a href="${
-                  variables.instagram !== null
-                    ? variables.instagram
-                    : "https://instagram.com/4geeksacademy"
-                }"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-            </div>
-        `;
+            ${cover}
+          <img src="${variables.avatarURL}" class="photo" />
+          <h1>${variables.name ? variables.name : ""}</h1>
+          <h1>${variables.lastname ? variables.lastname : ""}</h1>
+          <h3>Miami, USA</h3>
+          <ul class="${variables.socialMediaPosition}">
+            <li><a href="https://twitter.com/${
+              variables.twitter ? variables.twitter : "4geeksacademy"
+            }"
+            ><i class="fab fa-twitter"></i></a></li> 
+            <li><a href="https://github.com/${
+              variables.github ? variables.github : "4geeksacademy"
+            }"
+            ><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${
+              variables.linkedin ? variables.linkedin : "4geeksacademy"
+            }"
+            ><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${
+              variables.instagram ? variables.instagram : "4geeksacademy"
+            }""><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+    `;
 }
 
 /**
@@ -79,9 +63,9 @@ function render(variables = {}) {
  */
 window.onload = function() {
   window.variables = {
-    // if includeCover is true the algorithm should show the cover image
+    // if includeCover is true the algorithm should
     includeCover: true,
-    // this is the image's url that will be used as a background for the profile cover
+    // this is the url of the image that will used as background for the profile cover
     background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da",
     // this is the url for the profile avatar
     avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
@@ -89,21 +73,21 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: "github",
+    github: "Paulina-Pereyra",
     linkedin: null,
     instagram: null,
     name: null,
-    lastName: null,
+    lastname: null,
     role: null,
     country: null,
     city: null
   };
-  render(window.variables); // render the card for the first time
+  render(window.variables);
 
   document.querySelectorAll(".picker").forEach(function(elm) {
     elm.addEventListener("change", function(e) {
       // <- add a listener to every input
-      const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
+      const attribute = e.target.getAttribute("for");
       let values = {};
       values[attribute] =
         this.value == "" || this.value == "null"
@@ -113,7 +97,7 @@ window.onload = function() {
           : this.value == "false"
           ? false
           : this.value;
-      render(Object.assign(window.variables, values)); // render again the card with new values
+      render(Object.assign(window.variables, values));
     });
   });
 };
